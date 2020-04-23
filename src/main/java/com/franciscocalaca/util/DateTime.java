@@ -69,6 +69,19 @@ public final class DateTime extends Date implements Cloneable {
 
 
    /**
+    * Adiciona hora em uma data. Não altera o objeto no qual é chamado. A data alterada é retornada no método.
+    * @param qtdDias
+    * @return
+    */
+   public DateTime addHour(int qtdHour){
+      Calendar cal = Calendar.getInstance();
+      cal.setTime(date);
+      int hour = cal.get(Calendar.HOUR_OF_DAY);
+      cal.set(Calendar.HOUR_OF_DAY, hour + qtdHour);
+      return new DateTime(cal);
+   }
+
+   /**
     * Adiciona dia em uma data. Não altera o objeto no qual é chamado. A data alterada é retornada no método.
     * @param qtdDias
     * @return
