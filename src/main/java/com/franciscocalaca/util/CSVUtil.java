@@ -1,4 +1,4 @@
-package io.getcoders.migrador.infosindical;
+package com.franciscocalaca.util;
 
 import java.io.InputStream;
 import java.util.ArrayList;
