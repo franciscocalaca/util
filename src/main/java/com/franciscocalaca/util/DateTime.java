@@ -20,9 +20,9 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Instancia um objeto à partir de uma String. Ex.: new Data("dd/MM/yyyy", "01/02/2014")
-    * @param formato
-    * @param data
-    * @throws ParseException
+    * @param formato format of the date
+    * @param data date to import
+    * @throws ParseException when string date is in wrong format
     */
    public DateTime(String formato, String data) throws ParseException{
       this(new SimpleDateFormat(formato).parse(data));
@@ -30,7 +30,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Instancia um objeto à partri de um Date
-    * @param date
+    * @param date date to create
     */
    public DateTime(Date date) {
       this.date = date;
@@ -38,7 +38,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Instancia um objeto à partir de um Calendar
-    * @param cal
+    * @param cal calendar to convert
     */
    public DateTime(Calendar cal) {
       this(cal.getTime());
@@ -46,9 +46,9 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Instancia um objeto à partir de um dia, mes e ano informados
-    * @param dia
-    * @param mes
-    * @param ano
+    * @param dia day of the date
+    * @param mes month of the date
+    * @param ano year of the date
     */
    public DateTime(int dia, int mes, int ano){
       Calendar cal = Calendar.getInstance();
@@ -70,8 +70,8 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Adiciona hora em uma data. Não altera o objeto no qual é chamado. A data alterada é retornada no método.
-    * @param qtdDias
-    * @return
+    * @param qtdHour qtd de hour
+    * @return the hour added
     */
    public DateTime addHour(int qtdHour){
       Calendar cal = Calendar.getInstance();
@@ -83,8 +83,8 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Adiciona dia em uma data. Não altera o objeto no qual é chamado. A data alterada é retornada no método.
-    * @param qtdDias
-    * @return
+    * @param qtdDias qtd de dias
+    * @return the day added
     */
    public DateTime addDay(int qtdDias){
       Calendar cal = Calendar.getInstance();
@@ -96,8 +96,8 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Adiciona mês em uma data. Não altera o objeto no qual é chamado. A data alterada é retornada no método.
-    * @param qtdMes
-    * @return
+    * @param qtdMes qtd de mes
+    * @return the month added
     */
    public DateTime addMonth(int qtdMes){
       Calendar cal = Calendar.getInstance();
@@ -109,7 +109,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna um objeto Data sem as informações de tempo: hora, minuto, segundo, etc
-    * @return
+    * @return the date without time
     */
    public DateTime getDateWithoutTime(){
       Calendar cal = Calendar.getInstance();
@@ -123,8 +123,8 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Calcula a diferença de dias entre até a dataCalc
-    * @param dataCalc
-    * @return
+    * @param dataCalc date to calc
+    * @return the diff days
     */
    public int getDiffDays(DateTime dataCalc){
       Date dataInicio = getDateWithoutTime();
@@ -151,7 +151,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna a data que representa o inicio do mês. Ex.: Data = 09/10/2014, retornará a data: 01/10/2014
-    * @return
+    * @return the first day of the month
     */
    public DateTime getMonthFirstDay(){
       Calendar cal = Calendar.getInstance();
@@ -162,7 +162,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna a data que representa o inicio do mês. Ex.: Data = 09/10/2014, retornará a data: 31/10/2014
-    * @return
+    * @return the last day of the month
     */
    public DateTime getMonthLastDay(){
       DateTime inicio = getMonthFirstDay();
@@ -171,9 +171,9 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna a data que representa o inicio do ano. Ex.: Data = 09/10/2014, retornará a data: 01/01/2014
-    * @return
+    * @return the first day of the year
     */
-   public DateTime getYearStart(){
+   public DateTime getYearFirstDay(){
       Calendar cal = Calendar.getInstance();
       cal.setTime(date);
       cal.set(Calendar.DAY_OF_YEAR, 1);
@@ -182,16 +182,16 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna a data que representa o fim do ano. Ex.: Data = 09/10/2014, retornará a data: 31/12/2014
-    * @return
+    * @return the last day of the year
     */
    public DateTime getYearLastDay(){
-      DateTime inicio = getYearStart();
+      DateTime inicio = getYearFirstDay();
       return inicio.addDay(30).addMonth(11);
    }
 
    /**
     * Retorna uma instancia de Calendar que representa a data
-    * @return
+    * @return date as Calendar
     */
    public Calendar getCalendar(){
       Calendar cal = Calendar.getInstance();
@@ -201,8 +201,8 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna a data formatada à partir do formato especificado.
-    * @param formato
-    * @return
+    * @param formato format of the date
+    * @return date as String
     */
    public String getFormated(String formato){
       SimpleDateFormat sdf = new SimpleDateFormat(formato);
@@ -211,7 +211,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o objeto java.util.Date gerenciado por esta Data
-    * @return
+    * @return the Date instance
     */
    public Date getDateInstance() {
       return date;
@@ -219,7 +219,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o objeto java.sql.Date gerenciado por esta Data, ideal para lidar com JDBC 
-    * @return
+    * @return the java.sql.Date instance
     */
    public java.sql.Date getDateSql(){
       return new java.sql.Date(date.getTime());
@@ -227,7 +227,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o objeto java.sql.Time gerenciado por esta Data, ideal para lidar com JDBC 
-    * @return
+    * @return the java.sql.Time instance
     */
    public Time getTimeSql(){
       return new Time(date.getTime());
@@ -235,7 +235,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o objeto java.sql.TimestampSql gerenciado por esta Data, ideal para lidar com JDBC 
-    * @return
+    * @return the java.sql.Timestamp instance
     */
    public Timestamp getTimestampSql(){
       return new Timestamp(date.getTime());
@@ -243,7 +243,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o dia da data. Ex.: 26/05/2014 retornará 26
-    * @return
+    * @return the day of the date
     */
    public int getDay(){
       return getCalendar().get(Calendar.DAY_OF_MONTH);
@@ -251,7 +251,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o dia da data. Ex.: 26/05/2014 retornará 5
-    * @return
+    * @return the month of the date
     */
    public int getMonth(){
       return getCalendar().get(Calendar.MONTH) + 1;
@@ -259,7 +259,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Retorna o dia da data. Ex.: 26/05/2014 retornará 2014
-    * @return
+    * @return the year of the date
     */
    public int getYear(){
       return getCalendar().get(Calendar.YEAR);
@@ -267,6 +267,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Metodo que sobrescreve o de mesmo nome da classe Date, utilizado para manter compatibilidade.
+    * @return the time in milliseconds
     */
    @Override
    public long getTime() {
@@ -275,6 +276,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Metodo que sobrescreve o de mesmo nome da classe Date, utilizado para manter compatibilidade.
+    * @return true if date is after
     */
    @Override
    public boolean after(Date when) {
@@ -283,6 +285,7 @@ public final class DateTime extends Date implements Cloneable {
 
    /**
     * Metodo que sobrescreve o de mesmo nome da classe Date, utilizado para manter compatibilidade.
+    * @return comprateTo
     */
    @Override
    public int compareTo(Date anotherDate) {

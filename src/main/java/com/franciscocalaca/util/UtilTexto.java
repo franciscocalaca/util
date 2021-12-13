@@ -9,13 +9,6 @@ import java.text.Normalizer;
  */
 public abstract class UtilTexto {
 
-   /**
-    * Remove caracteres de um texto informado. Exemplo: removerCaracter("teste", {'e'}) retorna tst
-    * 
-    * @param texto texto a ter os caracteres removidos
-    * @param caracteresRemover os caracteres que serao removidos do texto
-    * @return retorna o texto com os caracteres informados removidos
-    */
    public static String removerCaracter(String texto, char ... caracteresRemover) {
       if(texto == null){
          return "";
@@ -38,15 +31,6 @@ public abstract class UtilTexto {
       return resp.toString();
    }
 
-   /**
-    * substitui em um texto especificado todos os caracateres informados no array de char por uma String
-    * informada em substituirPor
-    * 
-    * @param texto
-    * @param caracteres
-    * @param substituirPor
-    * @return
-    */
    public static String substituirCaracteres(String texto, char [] caracteres, String substituirPor){
       if(texto == null){
          return "";
@@ -71,21 +55,10 @@ public abstract class UtilTexto {
       return resp.toString();
    }
 
-   /**
-    * Remove aspas em qualquer posicao de um texto
-    * @param texto
-    * @return
-    */
    public static String removerAspas(String texto) {
       return removerCaracter(texto, new char[] { '"' });
    }
 
-   /**
-    * retorna o metodo get equivalente ao atributo informado. Exemplo: 
-    * getMetodoGet(endereco) retornara getEndereco
-    * @param atributo
-    * @return
-    */
    public static String getMetodoGet(String atributo) {
       StringBuffer attr = new StringBuffer(atributo);
       char c = attr.charAt(0);
@@ -93,12 +66,6 @@ public abstract class UtilTexto {
       return "get" + attr.toString();
    }
 
-   /**
-    * retorna o metodo set equivalente ao atributo informado. Exemplo: 
-    * getMetodoGet(endereco) retornara setEndereco
-    * @param atributo
-    * @return
-    */
    public static String getMetodoSet(String atributo) {
       StringBuffer attr = new StringBuffer(atributo);
       char c = attr.charAt(0);
@@ -106,23 +73,10 @@ public abstract class UtilTexto {
       return "set" + attr.toString();
    }
 
-   /**
-    * Completa espacos em branco em uma string.
-    * @param texto
-    * @param tamanhoTotal
-    * @param formatarEsquerda quando true o texto sera formatado a esquerda.
-    * false o texto sera formatado a direita
-    * @return
-    */
    public static String completarEspacoBranco(String texto, int tamanhoTotal, boolean formatarEsquerda){
       return String.format("%"+(formatarEsquerda ? "-" : "") + tamanhoTotal + "s", texto);
    }
 
-   /**
-    * Remove aspas do inicio e do final do texto. Aspas no meio do texto nao sao removidas
-    * @param texto
-    * @return
-    */
    public static String removerAspasInicioFinal(String texto){
       if(texto != null && texto.length() > 0){
          char [] t = texto.toCharArray();
@@ -146,13 +100,6 @@ public abstract class UtilTexto {
       }
    }
 
-   /**
-    * Completa o texto com o caracter c informado na quantidade tamanhoTotal 
-    * @param c
-    * @param tamanhoTotal
-    * @param texto
-    * @return
-    */
    public static String completarStringEsquerda(char c, int tamanhoTotal, String texto){
       StringBuffer sb = new StringBuffer();
       int qtdCompletar = tamanhoTotal - texto.length();
@@ -167,11 +114,6 @@ public abstract class UtilTexto {
    }
 
 
-   /**
-    * Remove os acentos do texto informado
-    * @param texto
-    * @return
-    */
    public static String removerAcentos(String texto) {
       if (texto == null) {
          return "";
@@ -183,32 +125,10 @@ public abstract class UtilTexto {
       }
    }
 
-   /**
-    * remove caracteres nao alfanumericos de um texto. Obs.: não remove os acentos
-    * @param texto
-    * @return
-    */
    public static String removerCaracteresNaoAlfaNumericos(String texto){
       return texto.replaceAll("[^A-Za-zÀ-ú0-9 ]", "");
    }
 
-   /**
-    * Trunca um texto para um tamanho maximo especificado.
-    * <pre>
-    * String retorno = truncarTamanhoMaximo("teste", 10)
-    * 
-    * retorno sera "teste"
-    * 
-    * 
-    * String retorno = truncarTamanhoMaximo("testando", 5)
-    * 
-    * retorno será "testa"
-    * </pre>
-    * 
-    * @param texto
-    * @param tamanho
-    * @return
-    */
    public static String truncarTamanhoMaximo(String texto, int tamanho){
       if(texto != null){
 
@@ -222,17 +142,6 @@ public abstract class UtilTexto {
       }
    }
 
-   /**
-    * Formata um texto com uma mascara específica
-    * Exemplo de uso:
-    * <pre>
-    * String cpfFormatado = getValueMaskFormat("###.###.###-##", "12345678912", true);
-    * </pre>
-    * @param mascara
-    * @param texto
-    * @param retornaVazio
-    * @return
-    */
    public static String formatarComMascara(String mascaraFormatar, String textoFormatar, boolean retornaVazio) {
       String texto = textoFormatar;
       String mascara = mascaraFormatar;
