@@ -1,42 +1,45 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.franciscocalaca</groupId>
-	<artifactId>util</artifactId>
-	<version>1.0.0</version>
+	<artifactId>campotech-web-common</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>util</name>
 	<description>Utils</description>
-	<url>https://github.com/franciscocalaca/util</url>
+	<url>https://github.com/franciscocalaca/campotech-web-common</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-    <licenses>
-        <license>
-            <name>The MIT License</name>
-            <url>https://raw.githubusercontent.com/ConvertAPI/convertapi-java/master/LICENSE.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>	
-    
-    <developers>
-        <developer>
-            <id>francisco</id>
-            <name>Francisco Calaca</name>
-            <email>chicocx@gmail.com</email>
-            <organization>FranciscoCalaca</organization>
-            <organizationUrl>https://github.com/chicocx/</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>-3</timezone>
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>
+				https://raw.githubusercontent.com/ConvertAPI/convertapi-java/master/LICENSE.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-        </developer>
-    </developers>    
+	<developers>
+		<developer>
+			<id>francisco</id>
+			<name>Francisco Calaca</name>
+			<email>chicocx@gmail.com</email>
+			<organization>FranciscoCalaca</organization>
+			<organizationUrl>https://github.com/chicocx/</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>-3</timezone>
+
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
@@ -53,15 +56,73 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.franciscocalaca</groupId>
+			<artifactId>util</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.franciscocalaca</groupId>
+			<artifactId>http-utils</artifactId>
+			<version>1.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>2.3</version> <!-- Versão estável e atual -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.17.0</version> <!-- Versão atual (abril de 2024) -->
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version> <!-- ou versão compatível com seu stack -->
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>3.2.2</version> <!-- Versão alinhada com Spring Boot 3.2.x -->
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>6.2.2</version> <!-- ou compatível com sua versão do Spring Boot -->
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+			<version>6.2.2</version> <!-- use a versão compatível com seu projeto -->
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version> <!-- ou versão compatível com seu ambiente -->
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>3.6.3</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -87,7 +148,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.7</version>
+				<version>1.6.13</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -138,10 +199,10 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<!-- GPG Signature on release -->
 		<profile>
@@ -171,8 +232,8 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>	
-	
+	</profiles>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -180,14 +241,17 @@
 		</snapshotRepository>
 		<repository>
 			<id>ossrh</id>
-			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<url>
+				https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 	<scm>
-		<connection>scm:git:git://github.com/franciscocalaca/util.git</connection>
-		<developerConnection>scm:git:git@github.com:franciscocalaca/util.git</developerConnection>
-		<url>https://github.com/franciscocalaca/util</url>
+		<connection>
+			scm:git:git://github.com/franciscocalaca/campotech-web-common.git</connection>
+		<developerConnection>
+			scm:git:git@github.com:franciscocalaca/campotech-web-common.git</developerConnection>
+		<url>https://github.com/franciscocalaca/campotech-web-common</url>
 		<tag>HEAD</tag>
 	</scm>
-	
+
 </project>
